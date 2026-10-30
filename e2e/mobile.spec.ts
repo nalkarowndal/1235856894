@@ -15,7 +15,7 @@ test('mobile branding, catalog, navigation, wishlist and screenshots', async({pa
  await page.getByRole('navigation',{name:'모바일 하단 탐색'}).getByRole('button',{name:'렌탈'}).click();
  await expect(page.getByText('Rent the moment.')).toBeVisible();
  await page.getByRole('button',{name:'찜 추가'}).first().click();
- await expect(page.getByRole('status')).toContainText('위시리스트');
+ await expect(page.getByRole('button',{name:'찜 해제'}).first()).toBeVisible();
  await page.getByRole('navigation',{name:'모바일 하단 탐색'}).getByRole('button',{name:'찜',exact:true}).click();
  await expect(page.getByText('Your wishlist.')).toBeVisible();
  await expect(page.getByText('The Sera Top Handle').first()).toBeVisible();
@@ -27,5 +27,5 @@ test('ERP login view requires authentication', async ({page}) => {
  await page.locator('img[src="/splash.svg"]').waitFor({state:'detached',timeout:10_000});
  await page.getByRole('navigation',{name:'모바일 하단 탐색'}).getByRole('button',{name:'마이'}).click();
  await page.getByRole('button',{name:/ERP 관리자/}).click();
- await expect(page.getByText('ERP', {exact:false}).first()).toBeVisible();
+ await expect(page.getByRole('heading',{name:'ERP Studio.'})).toBeVisible();
 });

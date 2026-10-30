@@ -64,12 +64,13 @@ ADMIN_PASSWORD='your-unique-long-random-password' npm run dev
 ### 개발/검수 명령어
 
 ```bash
-npm run test:api  # Node.js 기본 test runner: 데이터베이스 단위 테스트
+npm run test:api  # DB 단위 테스트 4개 + HTTP API 통합 테스트 3개
 npm run build     # 프런트 프로덕션 빌드
 npm start         # 빌드된 client/dist + 서버 API, PORT 기본값 4100
+npm run test:e2e  # Playwright 모바일 브라우저 E2E
 ```
 
-프로젝트 생성 환경에서 npm 레지스트리 연결이 제한되어 **npm install / Vite 프로덕션 빌드 / 브라우저 시각 QA는 수행하지 못했습니다**. Node.js 단위 테스트 4개 및 API 헬스·카탈로그·로그인 스모크 테스트는 통과했습니다. 패키지 설치 후 `npm run build`와 Playwright 시각 검수를 진행하세요.
+프로젝트 생성 환경에서 npm 레지스트리 연결이 제한되어 **npm install / Vite 프로덕션 빌드 / 브라우저 시각 QA는 수행하지 못했습니다**. API 7개 테스트와 TypeScript/Vite 빌드는 GitHub Actions에서 통과했습니다. Playwright 모바일 E2E는 Actions에서 실행되며, 최신 결과는 Actions 화면을 확인하세요.
 
 ## API 주요 엔드포인트
 
@@ -106,6 +107,9 @@ luxuryRental-starter/
 │   ├── index.mjs                 # Node HTTP REST API 및 관리자 세션
 │   ├── test.mjs                  # 예약 충돌/가격/재고 테스트
 │   └── .env.example
+├── .github/workflows/qa.yml      # GitHub Actions 자동 검수
+├── e2e/mobile.spec.ts           # 모바일 UI E2E
+├── playwright.config.ts         # iPhone 크기 Chromium 테스트 설정
 ├── docs/ARCHITECTURE.md
 └── docs/ANTIGRAVITY_PROMPT.md
 ```
