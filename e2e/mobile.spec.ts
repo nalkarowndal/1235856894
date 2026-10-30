@@ -14,7 +14,7 @@ test('mobile branding, catalog, navigation, wishlist and screenshots', async({pa
  await page.screenshot({ path: testInfo.outputPath('luxuryRental-store-mobile.png'), fullPage:true });
  await page.getByRole('navigation',{name:'모바일 하단 탐색'}).getByRole('button',{name:'렌탈'}).click();
  await expect(page.getByText('Rent the moment.')).toBeVisible();
- await page.getByRole('button',{name:'찜 추가'}).first().click();
+ await page.getByRole('button',{name:'찜 추가',exact:true}).first().click();
  await expect(page.getByRole('button',{name:'찜 해제'}).first()).toBeVisible();
  await page.getByRole('navigation',{name:'모바일 하단 탐색'}).getByRole('button',{name:'찜',exact:true}).click();
  await expect(page.getByText('Your wishlist.')).toBeVisible();
