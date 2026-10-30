@@ -1,0 +1,1 @@
+{"name":"luxuryrental-server","version":"0.1.0","type":"module","private":true,"scripts":{"dev":"node --watch index.mjs","start":"node index.mjs","test":"node --test test.mjs test-api.mjs"},"engines":{"node":">=22.13.0"}}

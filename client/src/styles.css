@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@theme { --color-ink:#181a16; --color-moss:#424b3d; --color-champagne:#baa27a; --color-cream:#f9f7f2; --color-sand:#ebe6db; --font-serif:"Cormorant Garamond",serif; --font-sans:"DM Sans","Noto Sans KR",sans-serif; }
+:root {font-family:var(--font-sans);font-synthesis:none;color:#181a16;background:#f9f7f2;-webkit-font-smoothing:antialiased;}
+* {box-sizing:border-box;} body{margin:0;} button, input, select{font:inherit;} button{cursor:pointer;} button:disabled{cursor:not-allowed;opacity:.55;} ::selection{background:#d3c2a5;color:#171914;}
+.serif{font-family:var(--font-serif)} .korean{font-family:'Noto Sans KR',sans-serif;} .micro{letter-spacing:.22em;text-transform:uppercase;font-size:10px;font-weight:700;}
+.raised{box-shadow:0 12px 38px rgba(22,26,18,.09)} .glass{backdrop-filter:blur(20px);background:rgba(250,248,243,.92)} .goldline{background:linear-gradient(90deg,transparent,#c1af91,transparent)}
+.hide-scrollbar::-webkit-scrollbar{display:none}.hide-scrollbar{scrollbar-width:none;} .touch{min-width:44px;min-height:44px;} .safe-bottom{padding-bottom:max(12px,env(safe-area-inset-bottom));} .shadow-card{box-shadow:0 9px 32px rgba(0,0,0,.06)}
+.engrave{color:#cdbb98;text-shadow:0 -1px 0 rgba(0,0,0,.7),0 1px 0 rgba(255,255,255,.22),0 0 20px rgba(190,171,121,.17)}
+@keyframes sheen{0%{background-position:-200% 0}100%{background-position:200% 0}}.shimmer{background:linear-gradient(110deg,#eee9df 8%,#f9f7f3 18%,#eee9df 33%);background-size:200% 100%;animation:sheen 1.7s linear infinite;}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}

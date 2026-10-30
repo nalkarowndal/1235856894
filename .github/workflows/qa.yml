@@ -1,0 +1,48 @@
+name: luxuryRental QA
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  unit-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Validate Node.js ERP API
+        run: npm run test:api
+      - name: TypeScript and production Vite build
+        run: npm run build
+  mobile-e2e:
+    needs: unit-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      ADMIN_PASSWORD: ${{ secrets.QA_ADMIN_PASSWORD || 'ci-demo-password-not-for-production' }}
+      LR_DB_PATH: ${{ github.workspace }}/server/ci-qa.db
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Mobile functional and screenshot QA
+        run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: luxuryRental-mobile-qa
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
